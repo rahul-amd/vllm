@@ -282,6 +282,9 @@ class Sampler(nn.Module):
         # Compute the log probabilities.
         logprobs = torch.log_softmax(logits, dim=-1, dtype=torch.float)
 
+        # HACK(raralika): replace logprbs by logits
+        logprobs = logits
+
         # Sample the next tokens.
         maybe_deferred_sample_results, maybe_sampled_tokens_tensor = _sample(
             probs,
